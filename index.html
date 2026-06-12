@@ -66,7 +66,32 @@ nav{position:fixed;top:0;left:0;right:0;z-index:200;display:flex;justify-content
 .mobile-menu a:hover{color:var(--cyan);}
 .mobile-menu.open{display:flex;}
 
-#hero{position:relative;z-index:1;min-height:100vh;display:flex;flex-direction:column;justify-content:center;padding:0 8%;padding-top:80px;}
+#hero{position:relative;z-index:1;min-height:100vh;display:flex;align-items:center;padding:0 8%;padding-top:80px;gap:3rem;}
+.hero-left{flex:1;display:flex;flex-direction:column;justify-content:center;}
+.hero-visual{flex:1;display:flex;align-items:center;justify-content:center;animation:fadeUp .8s 1s both;perspective:1000px;}
+.hv-card{position:relative;width:100%;max-width:440px;aspect-ratio:1;}
+.hv-ring{position:absolute;inset:0;border:1px solid rgba(0,240,255,.15);border-radius:50%;animation:spin 30s linear infinite;}
+.hv-ring2{position:absolute;inset:30px;border:1px solid rgba(155,0,255,.15);border-radius:50%;animation:spin 22s linear infinite reverse;}
+.hv-ring3{position:absolute;inset:60px;border:1px dashed rgba(0,240,255,.2);border-radius:50%;animation:spin 40s linear infinite;}
+@keyframes spin{from{transform:rotate(0deg);}to{transform:rotate(360deg);}}
+.hv-core{position:absolute;inset:90px;border-radius:50%;background:radial-gradient(circle at 35% 30%,rgba(0,240,255,.18),rgba(155,0,255,.08) 60%,transparent 80%);border:1px solid rgba(0,240,255,.25);display:flex;align-items:center;justify-content:center;backdrop-filter:blur(2px);box-shadow:0 0 60px rgba(0,240,255,.12),inset 0 0 60px rgba(155,0,255,.08);cursor:none;transition:transform .15s ease,box-shadow .3s;}
+.hv-core:hover{box-shadow:0 0 90px rgba(0,240,255,.25),inset 0 0 80px rgba(155,0,255,.15);}
+.hv-icon{font-size:4.5rem;animation:floaty 4s ease-in-out infinite;filter:drop-shadow(0 0 20px rgba(0,240,255,.5));transition:opacity .3s,transform .3s;}
+@keyframes floaty{0%,100%{transform:translateY(0) scale(1);}50%{transform:translateY(-12px) scale(1.04);}}
+.hv-node{position:absolute;width:50px;height:50px;border-radius:12px;background:var(--card);border:1px solid var(--border);display:flex;align-items:center;justify-content:center;font-size:1.4rem;box-shadow:0 8px 24px rgba(0,0,0,.4);cursor:none;transition:transform .25s,border-color .25s,box-shadow .25s,background .25s;}
+.hv-node:hover{transform:scale(1.18) !important;border-color:var(--cyan);box-shadow:0 0 24px rgba(0,240,255,.35);background:rgba(0,240,255,.06);z-index:5;}
+.hv-n1{top:0;left:50%;transform:translateX(-50%);animation:orbit1 12s linear infinite;}
+.hv-n2{bottom:10%;left:5%;animation:orbit2 16s linear infinite;}
+.hv-n3{bottom:10%;right:5%;animation:orbit3 14s linear infinite;}
+.hv-n4{top:15%;right:0;animation:orbit4 18s linear infinite;}
+@keyframes orbit1{0%,100%{transform:translateX(-50%) translateY(0);}50%{transform:translateX(-50%) translateY(-14px);}}
+@keyframes orbit2{0%,100%{transform:translateY(0) rotate(0deg);}50%{transform:translateY(-10px) rotate(8deg);}}
+@keyframes orbit3{0%,100%{transform:translateY(0) rotate(0deg);}50%{transform:translateY(-16px) rotate(-8deg);}}
+@keyframes orbit4{0%,100%{transform:translateY(0);}50%{transform:translateY(-10px);}}
+.hv-label{position:absolute;bottom:-2.5rem;left:50%;transform:translateX(-50%);font-size:.7rem;letter-spacing:.2em;text-transform:uppercase;color:var(--muted);white-space:nowrap;transition:color .3s;min-width:280px;text-align:center;}
+.hv-tooltip{position:absolute;bottom:100%;left:50%;transform:translateX(-50%) translateY(-10px) scale(.9);background:var(--card);border:1px solid rgba(0,240,255,.25);border-radius:8px;padding:.5rem .9rem;font-size:.72rem;color:var(--text);white-space:nowrap;opacity:0;pointer-events:none;transition:opacity .2s,transform .2s;box-shadow:0 8px 20px rgba(0,0,0,.4);}
+.hv-node:hover .hv-tooltip{opacity:1;transform:translateX(-50%) translateY(-16px) scale(1);}
+@media(max-width:900px){#hero{flex-direction:column;padding-top:100px;gap:1rem;text-align:left;}.hero-visual{display:none;}}
 .hero-badge{display:inline-flex;align-items:center;gap:.6rem;background:rgba(0,240,255,.06);border:1px solid rgba(0,240,255,.15);border-radius:20px;padding:.4rem 1rem;font-size:.75rem;letter-spacing:.12em;text-transform:uppercase;color:var(--cyan);margin-bottom:1.8rem;width:fit-content;animation:fadeUp .7s .2s both;}
 .hero-badge-dot{width:7px;height:7px;border-radius:50%;background:var(--cyan);box-shadow:0 0 8px var(--cyan);animation:pulse 2s infinite;}
 h1.hero-name{font-size:clamp(2.8rem,8vw,6.5rem);font-weight:900;line-height:1.02;letter-spacing:-.03em;animation:fadeUp .7s .4s both;}
@@ -272,6 +297,7 @@ footer{position:relative;z-index:1;padding:2.5rem 5%;border-top:1px solid var(--
 </div>
 
 <section id="hero">
+  <div class="hero-left">
   <div class="hero-badge"><div class="hero-badge-dot"></div>Available for opportunities and collaborations</div>
   <h1 class="hero-name">
     <div class="line1">Abdullah</div>
@@ -289,6 +315,20 @@ footer{position:relative;z-index:1;padding:2.5rem 5%;border-top:1px solid var(--
     <div class="hs"><div class="hs-num">3+</div><div class="hs-label">GitHub Repos</div></div>
     <div class="hs"><div class="hs-num">2+</div><div class="hs-label">Years Studying AI</div></div>
     <div class="hs"><div class="hs-num">1</div><div class="hs-label">Active Internship</div></div>
+  </div>
+  </div>
+  <div class="hero-visual">
+    <div class="hv-card">
+      <div class="hv-ring"></div>
+      <div class="hv-ring2"></div>
+      <div class="hv-ring3"></div>
+      <div class="hv-core" id="hvCore"><div class="hv-icon" id="hvIcon">🧠</div></div>
+      <div class="hv-node hv-n1" data-icon="🤖" data-label="Generative AI &amp; LLMs">🤖<div class="hv-tooltip">Generative AI &amp; LLMs</div></div>
+      <div class="hv-node hv-n2" data-icon="👁️" data-label="Computer Vision">👁️<div class="hv-tooltip">Computer Vision</div></div>
+      <div class="hv-node hv-n3" data-icon="📊" data-label="Predictive ML">📊<div class="hv-tooltip">Predictive ML</div></div>
+      <div class="hv-node hv-n4" data-icon="⚡" data-label="Deep Learning">⚡<div class="hv-tooltip">Deep Learning</div></div>
+      <div class="hv-label" id="hvLabel">Click a node to explore</div>
+    </div>
   </div>
   <div class="hero-scroll-hint">
     <div class="scroll-mouse"><div class="scroll-wheel"></div></div>
@@ -553,9 +593,25 @@ const cur=document.getElementById('cur'),ring=document.getElementById('cur-ring'
 let mx=0,my=0,rx=0,ry=0;
 document.addEventListener('mousemove',e=>{mx=e.clientX;my=e.clientY;cur.style.left=mx+'px';cur.style.top=my+'px';});
 (function loop(){rx+=(mx-rx)*.13;ry+=(my-ry)*.13;ring.style.left=rx+'px';ring.style.top=ry+'px';requestAnimationFrame(loop);})();
-document.querySelectorAll('a,button,.btn,.proj-card,.rc,.info-card,.cl,.tool-badge,.mrow,.msoc,.tl-item').forEach(el=>{
+document.querySelectorAll('a,button,.btn,.proj-card,.rc,.info-card,.cl,.tool-badge,.mrow,.msoc,.tl-item,.hv-node,.hv-core').forEach(el=>{
   el.addEventListener('mouseenter',()=>{cur.style.width='16px';cur.style.height='16px';cur.style.background='var(--purple)';ring.style.width='46px';ring.style.height='46px';ring.style.borderColor='rgba(155,0,255,.5)';});
   el.addEventListener('mouseleave',()=>{cur.style.width='10px';cur.style.height='10px';cur.style.background='var(--cyan)';ring.style.width='34px';ring.style.height='34px';ring.style.borderColor='rgba(0,240,255,.4)';});
+});
+
+// ── HERO VISUAL INTERACTION ─────────────────────────────────────────────────
+const hvCore=document.getElementById('hvCore'),hvIcon=document.getElementById('hvIcon'),hvLabel=document.getElementById('hvLabel');
+const defaultIcon='🧠',defaultLabel='Click a node to explore';
+document.querySelectorAll('.hv-node').forEach(node=>{
+  node.addEventListener('click',()=>{
+    hvIcon.style.transform='scale(0)';hvIcon.style.opacity='0';
+    setTimeout(()=>{hvIcon.textContent=node.dataset.icon;hvIcon.style.transform='scale(1)';hvIcon.style.opacity='1';},150);
+    hvLabel.textContent=node.dataset.label;hvLabel.style.color='var(--cyan)';
+  });
+});
+hvCore.addEventListener('click',()=>{
+  hvIcon.style.transform='scale(0)';hvIcon.style.opacity='0';
+  setTimeout(()=>{hvIcon.textContent=defaultIcon;hvIcon.style.transform='scale(1)';hvIcon.style.opacity='1';},150);
+  hvLabel.textContent=defaultLabel;hvLabel.style.color='var(--muted)';
 });
 
 function openModal(){document.getElementById('hireModal').classList.add('open');document.body.style.overflow='hidden';}
